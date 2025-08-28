@@ -4,8 +4,27 @@ import Image from 'next/image';
 import { Modal } from '@/components/ui/modal'
 import { useState, useRef } from 'react';
 
-export default function FeaturedProjects({ dict, projects }: { dict: any, projects: any }) {
-    const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
+type Project = {
+  title: string
+  description: string
+  image: string
+  details: {
+    overview: string
+    features: string[]
+    status: string
+    team: string
+  }
+}
+
+type Dict = {
+  projects: {
+    title: string
+    features: string
+  }
+}
+
+export default function FeaturedProjects({ dict, projects }: { dict: Dict, projects: Project[] }) {
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null)
     const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 })
     const cardRefs = useRef<Array<HTMLDivElement | null>>([])
 
@@ -13,7 +32,7 @@ export default function FeaturedProjects({ dict, projects }: { dict: any, projec
         cardRefs.current[index] = el
     }
 
-    const handleProjectClick = (project: typeof projects[0], index: number) => {
+    const handleProjectClick = (project: Project, index: number) => {
         const card = cardRefs.current[index]
         if (card) {
             const rect = card.getBoundingClientRect()
@@ -33,7 +52,7 @@ export default function FeaturedProjects({ dict, projects }: { dict: any, projec
                         {dict.projects.title}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {projects.map((project: any, index: number) => (
+                        {projects.map((project: Project, index: number) => (
                             <div
                                 key={index}
                                 ref={(el) => setCardRef(el, index)}

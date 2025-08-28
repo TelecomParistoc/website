@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { getDictionary } from '@/dictionaries'
 import { Button } from "@/components/ui/button"
@@ -8,7 +7,7 @@ import FeaturedProjects from '@/components/FeaturedProjects';
 export default async function Home({
     params
 }: {
-    params: { lang: string }
+    params: Promise<{ lang: string }>;
 }) {
     const { lang } = await params || { lang: "en" };
     const dict = getDictionary(lang);

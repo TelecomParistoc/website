@@ -73,7 +73,7 @@ export default function Contact() {
             window.location.href = `mailto:${dict.contact.email}?subject=Contact from ${data.name}&body=${data.message}`
             setStatus('success')
             ;(e.target as HTMLFormElement).reset()
-        } catch (error) {
+        } catch {
             setStatus('error')
         } finally {
             setIsSubmitting(false)

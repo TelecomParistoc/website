@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default async function About({
     params,
 }: {
-    params: { lang: string }
+    params: Promise<{ lang: string }>;
 }) {
     const { lang } = await params;
     const dict = getDictionary(lang);

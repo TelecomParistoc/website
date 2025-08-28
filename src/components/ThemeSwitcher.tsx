@@ -1,26 +1,30 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import { useTheme } from './ThemeProvider'
+import { useState } from "react";
+import { useTheme } from "./ThemeProvider";
 
 const themes = {
   light: {
-    name: 'Light',
-    icon: '☀️'
+    name: "Light",
+    icon: "☀️",
   },
   dark: {
-    name: 'Dark',
-    icon: '🌙'
+    name: "Dark",
+    icon: "🌙",
   },
   telecom: {
-    name: 'Telecom',
-    icon: '🎓'
-  }
-} as const
+    name: "Telecom",
+    icon: "🎓",
+  },
+  robotics: {
+    name: "Robotics",
+    icon: "🤖",
+  },
+} as const;
 
 export default function ThemeSwitcher() {
-  const { theme, setTheme } = useTheme()
-  const [isOpen, setIsOpen] = useState(false)
+  const { theme, setTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="relative">
@@ -31,7 +35,9 @@ export default function ThemeSwitcher() {
         <span>{themes[theme].icon}</span>
         <span>{themes[theme].name}</span>
         <svg
-          className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 transition-transform ${
+            isOpen ? "rotate-180" : ""
+          }`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -51,13 +57,13 @@ export default function ThemeSwitcher() {
             <button
               key={themeKey}
               onClick={() => {
-                setTheme(themeKey as keyof typeof themes)
-                setIsOpen(false)
+                setTheme(themeKey as keyof typeof themes);
+                setIsOpen(false);
               }}
               className={`block w-full text-left px-4 py-2 text-sm ${
                 theme === themeKey
-                  ? 'bg-muted text-foreground'
-                  : 'text-foreground/70 hover:bg-muted'
+                  ? "bg-muted text-foreground"
+                  : "text-foreground/70 hover:bg-muted"
               } flex items-center space-x-2`}
             >
               <span>{icon}</span>
@@ -67,5 +73,5 @@ export default function ThemeSwitcher() {
         </div>
       )}
     </div>
-  )
-} 
+  );
+}

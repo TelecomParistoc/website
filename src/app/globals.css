@@ -88,6 +88,35 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+
+  :root[data-theme="robotics"] {
+  --background: 220 15% 12%;
+  --foreground: 0 0% 100%;
+  --primary: 197 100% 65%;
+  --primary-foreground: 220 20% 10%;
+  --secondary: 220 12% 20%;
+  --secondary-foreground: 197 100% 90%;
+  --accent: 43 95% 60%;
+  --accent-foreground: 220 20% 10%;
+  --muted: 220 10% 25%;
+  --muted-foreground: 197 30% 75%;
+  --card: 220 15% 14%;
+  --card-foreground: 0 0% 100%;
+  --border: 197 100% 65% / 0.3;
+  --input: 197 100% 65% / 0.2;
+  --ring: 197 100% 65%;
+  --popover: 220 15% 12%;
+  --popover-foreground: 0 0% 100%;
+  --destructive: 0 75% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --chart-1: 197 100% 65%;
+  --chart-2: 220 40% 40%; 
+  --chart-3: 43 95% 60%;
+  --chart-4: 0 0% 85%;
+  --chart-5: 0 0% 100%;
+}
+
+
 }
 
 @layer base {

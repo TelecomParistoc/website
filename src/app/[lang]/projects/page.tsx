@@ -2,10 +2,11 @@ import Image from 'next/image'
 import { getDictionary } from '@/dictionaries'
 
 export default async function Projects({
-    params: { lang }
+    params,
 }: {
-    params: { lang: string }
+    params: Promise<{ lang: string }>;
 }) {
+    const {lang} = await params;
     const dict = getDictionary(lang)
     const projects = dict.featuredProjects
 
