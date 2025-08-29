@@ -18,10 +18,6 @@ export const en = {
         description: 'One of the main objectives of the association is to represent Télécom Paris at the French Robotics Cup. We also work on local projects such as an arcade machine and a robotics competition within the school. Finally, we organize events to let people experience the joy of robotics - Repair Cafés, conferences, and introductory courses in electronic or mechanical design.',
         features: 'Features:'
     },
-    join: {
-        title: 'Why Join Telecom Robotics?',
-        subtitle: 'Be part of an innovative community pushing the boundaries of robotics',
-    },
     about: {
         title: 'About Us',
         intro: 'Made up of engineering students from various backgrounds and experience levels, Telecom Robotics is Telecom Paris school\'s association dedicated to promoting robotics and sharing knowledge in this field, while having fun. From image processing to algorithmic optimization, embedded software, electronics, and many other fields, there\'s something for everyone!',
@@ -64,6 +60,32 @@ export const en = {
             title: 'Past Events',
         },
         registerButton: 'Register Now',
+    },
+    join: {
+        title: 'Join the association',
+        subtitle: 'Be part of an innovative community pushing the boundaries of robotics',
+        intro: 'Joining is super easy: just drop by our lab and take part in the projects!',
+        opportunities: {
+            title: 'How to get involved?',
+            applyButton: 'Learn more',
+            list: [
+                {
+                    role: 'Active member',
+                    description: 'Contribute directly to ongoing projects: competition robots, drones, robotic arms, and more.',
+                    applyLink: '/contact',
+                },
+                {
+                    role: 'Beginner',
+                    description: 'New to robotics? No worries, come to meetings and learn step by step.',
+                    applyLink: '/events',
+                },
+                {
+                    role: 'Organizer',
+                    description: 'Help organize events, workshops and competitions to bring the community to life.',
+                    applyLink: '/contact',
+                },
+            ],
+        },
     },
     contact: {
         title: 'Contact Us',

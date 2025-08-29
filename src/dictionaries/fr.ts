@@ -18,10 +18,6 @@ export const fr = {
         description: 'L\'un des objectifs principaux de l\'association est de représenter Télécom Paris à la Coupe de France de Robotique. Nous travaillons également sur des projets locaux telle qu\'une borne d\'arcade et une compétition de robotique au sein de l\'école. Enfin, nous organisons des évènements permettant de goûter au plaisir de la robotique - des Repair Café, des conférences et cours d\'introduction à la conception électronique ou mécanique.',
         features: 'Points clés :'
     },
-    join: {
-        title: 'Pourquoi Rejoindre Telecom Robotics ?',
-        subtitle: 'Faites partie d\'une communauté innovante repoussant les limites de la robotique',
-    },
     about: {
         title: 'L\'asso',
         intro: 'Formée d\'étudiantes et étudiants ingénieurs de diverses niveaux d\'expériences et diverses filières, Télécom Robotics est l\'association de l\'école Télécom Paris dont la raison d\'être est de promouvoir la robotique et de partager les connaissances liées à ce domaine, tout en s\'amusant. Entre le traitement d\'image, l\'optimisation algorithmique, le logiciel embarqué, l\'électronique et bien d\'autres domaines il y\'en a pour tous les goûts !',
@@ -64,6 +60,32 @@ export const fr = {
             title: 'Événements Passés',
         },
         registerButton: 'S\'inscrire',
+    },
+    join: {
+        title: 'Rejoindre l\'association',
+        subtitle: 'Faites partie d\'une communauté innovante repoussant les limites de la robotique',
+        intro: 'Pour nous rejoindre, rien de plus simple : passe au local et participe aux projets !',
+        opportunities: {
+            title: 'Comment s\'impliquer ?',
+            applyButton: 'En savoir plus',
+            list: [
+                {
+                    role: 'Membre actif',
+                    description: 'Participe directement aux projets en cours : robots de compétition, drones, bras articulés, etc.',
+                    applyLink: '/contact',
+                },
+                {
+                    role: 'Débutant',
+                    description: 'Tu débutes en robotique ? Pas de souci, viens aux réunions et apprends en participant.',
+                    applyLink: '/events',
+                },
+                {
+                    role: 'Organisation',
+                    description: 'Aide à organiser des événements, ateliers et compétitions pour faire vivre la communauté.',
+                    applyLink: '/contact',
+                },
+            ],
+        },
     },
     contact: {
         title: 'Contactez-nous',
