@@ -1,0 +1,75 @@
+services:
+    app:
+        container_name: robotics-app
+        build:
+            dockerfile: ./docker/app/Dockerfile
+            context: .
+            target: dev
+        restart: always
+        command: bun run dev
+        environment:
+            - NODE_ENV=development
+            # For our dear WSL2 users :)
+            - WATCHPACK_POLLING=true
+
+        env_file:
+            - .env
+
+        volumes:
+            - .:/app:cached
+            - modules_build:/app/node_modules
+            - next_build:/app/.next
+            - prisma-generated:/app/node_modules/.prisma
+            - prisma-client:/app/node_modules/@prisma/client
+        ports:
+            - 3000:3000
+
+        networks:
+            - db-network
+            - internet
+        depends_on:
+            - postgres
+
+    studio:
+        container_name: robotics-studio
+        build:
+            dockerfile: ./docker/studio/Dockerfile
+            context: .
+        working_dir: /app
+        volumes:
+            - .:/app
+        ports:
+            - '3001:3001'
+        env_file:
+            - .env
+        networks:
+            - internet
+            - db-network
+        depends_on:
+            - postgres
+
+    postgres:
+        image: postgres:15
+        container_name: robotics-postgres
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: maindb
+        volumes:
+            - postgres:/var/lib/postgresql/data
+        networks:
+            - db-network
+
+networks:
+    db-network:
+        external: false
+    internet:
+        driver: bridge
+
+volumes:
+    postgres:
+    app-data:
+    modules_build:
+    next_build:
+    prisma-generated:
+    prisma-client:
