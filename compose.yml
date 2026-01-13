@@ -5,6 +5,10 @@ services:
             dockerfile: ./docker/app/Dockerfile
             context: .
             target: dev
+            args:
+                - USER_ID=${UID:-1000}
+                - GROUP_ID=${GID:-1000}
+        user: "${UID:-1000}:${GID:-1000}"
         restart: always
         command: bun run dev
         environment:

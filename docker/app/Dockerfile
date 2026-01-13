@@ -3,14 +3,30 @@ ARG NODE_VERSION=20
 
 FROM node:${NODE_VERSION}-alpine AS base
 
-WORKDIR /build
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+
+WORKDIR /app
 
 RUN apk update && apk add curl unzip bash
 
-RUN curl -fsSL https://bun.sh/install | bash
+RUN if getent group ${GROUP_ID}; then \
+        existing_group=$(getent group ${GROUP_ID} | cut -d: -f1); \
+        sed -i "s/^${existing_group}:/robotics:/" /etc/group; \
+    else \
+        addgroup -g ${GROUP_ID} robotics; \
+    fi && \
+    if getent passwd ${USER_ID}; then \
+        existing_user=$(getent passwd ${USER_ID} | cut -d: -f1); \
+        sed -i "s/^${existing_user}:/robotics:/" /etc/passwd; \
+    else \
+        adduser -u ${USER_ID} -G robotics -s /bin/sh -D robotics; \
+    fi
 
-ENV PATH="${PATH}:/root/.bun/bin"
+RUN curl -fsSL https://bun.sh/install | bash && \
+    mv /root/.bun/bin/bun /usr/local/bin/bun
 
+RUN chown -R robotics:robotics /app
 
 FROM base AS deps
 
@@ -21,24 +37,27 @@ RUN apk add --no-cache libc6-compat git openssl
 WORKDIR /app
 
 COPY package.json bun.lock ./
-RUN --mount=type=cache,target=/root/.bun/install/cache bun install --frozen-lockfile --verbose
+
+USER robotics
+RUN --mount=type=cache,uid=${USER_ID},gid=${GROUP_ID},target=/home/robotics/.bun/install/cache \
+    bun install --frozen-lockfile --verbose
 
 
 FROM base AS dev
 
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY --from=deps --chown=robotics:robotics /app/node_modules ./node_modules
+COPY --chown=robotics:robotics . .
+USER robotics
 ENV NEXT_TELEMETRY_DISABLED=1
-
 
 FROM base AS builder
 
 WORKDIR /app
 
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-
+COPY --from=deps --chown=robotics:robotics /app/node_modules ./node_modules
+COPY --chown=robotics:robotics . .
+USER robotics
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN bun x prisma generate
