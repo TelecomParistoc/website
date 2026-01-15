@@ -35,7 +35,7 @@
     --radius: 0.5rem;
   }
 
-  :root[data-theme="dark"] {
+  :root[data-mode="dark"] {
     --background: 240 10% 4%;
     --foreground: 0 0% 98%;
     --primary: 199 89% 48%;
@@ -62,7 +62,7 @@
     --chart-5: 340 75% 55%;
   }
 
-  :root[data-theme="telecom"] {
+  :root[data-mode="telecom"] {
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
     --primary: 352 80% 39%;
@@ -89,7 +89,7 @@
     --chart-5: 340 75% 55%;
   }
 
-  :root[data-theme="robotics"] {
+  :root[data-mode="robotics"] {
   --background: 220 15% 12%;
   --foreground: 0 0% 100%;
   --primary: 197 100% 65%;
