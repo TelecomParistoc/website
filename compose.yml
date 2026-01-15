@@ -1,6 +1,7 @@
 services:
     app:
         container_name: robotics-app
+        profiles: ["full", "app"]
         build:
             dockerfile: ./docker/app/Dockerfile
             context: .

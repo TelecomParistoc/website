@@ -1,14 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { authClient } from "@/lib/auth-client";
+import SignIn from "@/components/auth/sign-in";
 
 export default function () {
-    const signIn = () => {
-        authClient.signIn.email({
-            email,
-            password
-        })
-    }
-    return <div>
-        <Button onClick={signIn}>Sign in</Button>
+    return <div className="flex place-items-center w-full h-full justify-items">
+        <SignIn />
     </div>;
 }

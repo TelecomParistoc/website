@@ -3,8 +3,8 @@ import localFont from "next/font/local";
 import "../globals.css";
 import Header from '@/components/layout/Header';
 import { getDictionary } from '@/dictionaries';
-import { Providers } from '@/components/Providers'
 import * as React from "react";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = localFont({
     src: "../fonts/GeistVF.woff",
@@ -36,12 +36,12 @@ export default async function RootLayout({
 }) {
     const { lang } = await params;
     return (
-        <html>
+        <html suppressHydrationWarning>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <Providers>
+                <ThemeProvider attribute="data-mode">
                     <Header lang={lang} />
                     {children}
-                </Providers>
+                </ThemeProvider>
             </body>
         </html>
     )
